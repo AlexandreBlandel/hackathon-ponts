@@ -104,3 +104,9 @@ def delete_prompt(text):
         del lignes[0]
     with open("prompt.txt","w",encoding="utf_8") as file:
         file.writelines(lignes)
+    return None
+
+def compte_prompt(text):
+    with open("prompt.txt","r",encoding="utf_8") as file:
+        lignes==file.readlines()
+    return len(lignes)
