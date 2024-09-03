@@ -86,10 +86,11 @@ def ask_question_to_pdf(text=f"Resume moi le texte ci dessous",files = "filename
     return gpt3_completion(text + f"\n\n" + pdftext)
 
 
-def add_prompt(text):
+def add_prompt(text_gpt):
     with open("prompt.txt","a",encoding="utf_8") as file:
-        file.write(text)
+        file.write(text_gpt)
     return None
+
 
 def read_prompt(text):
     with open("prompt.txt","r",encoding="utf_8") as file:
@@ -99,6 +100,7 @@ def read_prompt(text):
             chaine+=f"\n"+ligne
     return chaine
 
+
 def delete_prompt(text):
     with open("prompt.txt","r",encoding="utf_8") as file:
         del lignes[0]
@@ -106,7 +108,25 @@ def delete_prompt(text):
         file.writelines(lignes)
     return None
 
+def nouv_delete_prompt(text):
+    with open(text,"r",encoding="utf_8") as file:
+        del lignes[0]
+    with open(text,"w",encoding="utf_8") as file:
+        file.writelines(lignes)
+    return None
+
 def compte_prompt(text):
-    with open("prompt.txt","r",encoding="utf_8") as file:
+    with open(text,"r",encoding="utf_8") as file:
         lignes==file.readlines()
     return len(lignes)
+
+def actualise_prompt(text,text_gpt):
+    #ajout du prompt sur une nouvelle ligne du fichier
+    with open(text, "a", encoding="utf_8") as file:
+        file.write(f"\n{text_gpt}")
+
+    #verification <10 lignes
+    if compte_prompt(text)>10:
+        nouv_delete_prompt(text)
+ 
+    return text
