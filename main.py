@@ -17,9 +17,20 @@ def hello():
     return render_template('index.html')
 
 
-@app.route("/prompt",methods=['POST', 'GET'])
+@app.route("/prompt",methods=['POST'])
 def prompt():
     if request.method == 'POST':
         prompt = request.form['prompt']
         answer = ask_question_to_pdf.ask_question_to_pdf(prompt)
         return {"answer" : f"{answer}"}
+
+@app.route("/question",methods=['GET'])
+def question():
+    answer = ask_question_to_pdf.ask_question_to_pdf("Pose une question sur le texte")
+    return {"answer" : f"{answer}"}
+
+@app.route("/answer",methods=['POST'])
+def reponse():
+    prompt = request.form['prompt']
+    answer = ask_question_to_pdf.ask_question_to_pdf(prompt)
+    return {"answer" : f"{answer}"}
