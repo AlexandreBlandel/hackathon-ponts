@@ -84,3 +84,18 @@ def ask_question_to_pdf(text=f"Resume moi le texte ci dessous",files = "filename
     for t in chunks:
         pdftext += t + f"\n"
     return gpt3_completion(text + f"\n\n" + pdftext)
+
+
+def add_prompt(text):
+    with open("prompt.txt","a",encoding="utf_8") as file:
+        file.write(text)
+    return None
+
+def read_prompt(text):
+    with open("prompt.txt","r",encoding="utf_8") as file:
+        chaine=f""
+        for lignes in file :
+            ligne=lignes.strip()
+            chaine+=f"\n"+ligne
+    return chaine
+
