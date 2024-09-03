@@ -76,7 +76,7 @@ def gpt3_completion(text):
     )
     return response.choices[0].message.content
 
-def ask_question_to_pdf(files = "filename.pdf",text=f"Resume moi le texte ci dessous"):
+def ask_question_to_pdf(text=f"Resume moi le texte ci dessous",files = "filename.pdf"):
     filename = os.path.join(os.path.dirname(__file__), files)
     document = read_pdf(filename)
     chunks = split_text(document)
