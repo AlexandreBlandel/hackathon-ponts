@@ -99,3 +99,8 @@ def read_prompt(text):
             chaine+=f"\n"+ligne
     return chaine
 
+def delete_prompt(text):
+    with open("prompt.txt","r",encoding="utf_8") as file:
+        del lignes[0]
+    with open("prompt.txt","w",encoding="utf_8") as file:
+        file.writelines(lignes)
