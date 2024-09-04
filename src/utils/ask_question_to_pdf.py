@@ -120,13 +120,35 @@ def compte_prompt(text):
         lignes==file.readlines()
     return len(lignes)
 
-def actualise_prompt(text,text_gpt):
+def actualise_prompt_1(text,text_gpt):
     #ajout du prompt sur une nouvelle ligne du fichier
     with open(text, "a", encoding="utf_8") as file:
         file.write(f"\n{text_gpt}")
 
     #verification <10 lignes
     if compte_prompt(text)>10:
+        nouv_delete_prompt(text)
+ 
+    return text
+
+def get_reponse_gpt(text_gpt,files = "filename.pdf"):
+    reponse=ask_question_to_pdf(text_gpt,files = "filename.pdf")
+    with open("prompt.txt","a",encoding="utf_8") as file:
+        file.write(reponse)
+    return None
+
+def actualise_prompt_2(text, text_gpt):
+    #ajout du prompt sur une nouvelle ligne du fichier
+    with open(text, "a", encoding="utf_8") as file:
+        file.write(f"\n{text_gpt}")
+    
+    #ajout de la réponse de gpt
+    reponse_gpt=get_reponse_gpt(text_gpt,files== "filename.pdf")
+    with open(text, "a", encoding="utf_8") as file:
+        file.write(f"\n{reponse_gpt}")
+
+    #verification <10 conversations
+    if compte_prompt(text)>20:
         nouv_delete_prompt(text)
  
     return text
