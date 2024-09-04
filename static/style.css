@@ -1,15 +1,11 @@
 :root {
   --body-background-color: #f5f6f8;
   --main-background-color: #ffffff;
-  --body-background-color-dark: #1a1b1b;
-  --main-background-color-dark: #1fe68c;
   --main-color: #2a303b;
-  --main-color-dark: #e110b4;
   --max-body-width: 700px;
-  --border-color: #cccccc;
-  --border-color-dark: #ebfc05;
-  --secondary-color: #fff6d3;
-  --secondary-color-dark: #cc1515;
+  --border-color: #000000;
+  /* #cccccc */
+  --secondary-color: #3badc4;
   --loader-bullet-size: 6px;
 }
 
@@ -49,6 +45,7 @@ body {
 }
 
 .message {
+  background-color: rgb(33, 142, 75);
   border: 1px solid var(--border-color);
   border-radius: 5px;
   padding: 10px 15px;
@@ -56,6 +53,7 @@ body {
 
 .message-human {
   background-color: var(--secondary-color);
+  color: black;
 }
 
 .prompt-container {
@@ -95,6 +93,36 @@ body {
   background-color: var(--body-background-color);
   cursor: pointer;
 }
+
+#return-button {
+  background-color: red;
+  border: none;
+  margin-top: 2px;
+  margin-left: 4px;
+  cursor: zoom-out;
+}
+
+#dark_mode-button {
+  background-color: rgb(4, 14, 61);
+  border: none;
+  cursor: grab;
+  color: white;
+}
+
+#white_mode-button {
+  background-color: rgb(133, 151, 231);
+  border: none;
+  cursor: grab;
+  color: black;
+}
+
+#choice_PDF-button {
+  background-color: rgb(59, 157, 157);
+  border: none;
+  cursor: not-allowed;
+  color: black;
+}
+
 
 .hidden {
   display: none;
