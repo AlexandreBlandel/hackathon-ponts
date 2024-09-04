@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/")
 def hello_world():
     ask_question_to_pdf.reset_prompt()
-    return "<p>Hello, World!</p>"
+    return render_template('acceuil.html')
 
 
 
@@ -27,7 +27,7 @@ def prompt():
 
 @app.route("/question",methods=['GET'])
 def question():
-    answer = ask_question_to_pdf.ask_question_to_pdf("Tu es un professeur et tu as demandé à apprendre le texte ci-dessous, pose donc une question sur un details précis pour t'assurer que le texte est bien su")
+    answer = ask_question_to_pdf.ask_question_to_pdf("Tu es un professeur et tu m''as demandé à apprendre le texte ci-dessous, pose donc une question sur un details précis pour t'assurer que le texte est bien su")
     ask_question_to_pdf.add_prompt(answer)
     return {"answer" : f"{answer}"}
 

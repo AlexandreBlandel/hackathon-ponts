@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Ma page</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style_acceuil.css') }}"
+    />
+  </head>
+
+  <body>
+    <main class="main-container">
+      <header class="header">
+        <h1 class="header-title">Mon A.I.de mémoire</h1>
+      </header>
+
+      <section id="messages-container" class="messages-container">
+        <div class="message message-ai">
+          Choisis un mode!
+        </div>
+      </section>
+
+      <button id="Bouton1">Mode 1</button>
+      
+      <button id="Bouton2">Mode 2</button>
+
+      <script>
+        document.getElementById('Bouton1').addEventListener('click', function() {
+            // Rediriger vers /hello
+            window.location.href = '/hello';
+        });
+    </script>
+    </main>
+  </body>
+</html>
