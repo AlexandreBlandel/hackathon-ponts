@@ -1,7 +1,12 @@
 const promptForm = document.getElementById("prompt-form");
 const submitButton = document.getElementById("submit-button");
 const questionButton = document.getElementById("question-button");
+
+const darkButton = document.getElementById("dark_mode-button");
+const whiteButton = document.getElementById("white_mode-button");
+const root = document.documentElement;
 const messagesContainer = document.getElementById("messages-container");
+
 
 const appendHumanMessage = (message) => {
   const humanMessageElement = document.createElement("div");
@@ -71,3 +76,20 @@ const handleQuestionClick = async (event) => {
 };
 
 questionButton.addEventListener("click", handleQuestionClick);
+
+
+darkButton.addEventListener('click', () => {
+
+  root.style.setProperty('--body-background-color', '#bbc8dc');
+  root.style.setProperty('--main-background-color', '#376b6c');
+  root.style.setProperty('--main-color', '#bbc8dc');
+  root.style.setProperty('--border-color', 'blue');
+});
+
+whiteButton.addEventListener('click', () => {
+
+  root.style.setProperty('--body-background-color', '#f5f6f8');
+  root.style.setProperty('--main-background-color', '#ffffff');
+  root.style.setProperty('--main-color', '#2a303b');
+  root.style.setProperty('--border-color', '#cccccc');
+});
