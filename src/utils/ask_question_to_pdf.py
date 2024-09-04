@@ -86,69 +86,43 @@ def ask_question_to_pdf(text=f"Resume moi le texte ci dessous",files = "filename
     return gpt3_completion(text + f"\n\n" + pdftext)
 
 
-def add_prompt(text_gpt):
+def reset_prompt():
+    with open("prompt.txt","w",encoding="utf_8") as file:
+        file.write("")
+
+
+
+def add_prompt(text):
     with open("prompt.txt","a",encoding="utf_8") as file:
-        file.write(text_gpt)
+        file.write(text)
     return None
 
 
-def read_prompt(text):
+def read_prompt():
     with open("prompt.txt","r",encoding="utf_8") as file:
         chaine=f""
         for lignes in file :
-            ligne=lignes.strip()
-            chaine+=f"\n"+ligne
+            chaine += lignes
     return chaine
 
 
-def delete_prompt(text):
-    with open("prompt.txt","r",encoding="utf_8") as file:
-        del lignes[0]
-    with open("prompt.txt","w",encoding="utf_8") as file:
-        file.writelines(lignes)
+def delete_old_prompt(text):
+    with open(text,"r",encoding="utf_8") as file:
+        i = 0
+        chaine = f""
+        for lignes in file:
+            if i==0:
+                i=1
+            else:
+                chaine += lignes
+    with open(text,"w",encoding="utf_8") as file:
+        file.write(lignes)
     return None
 
-def nouv_delete_prompt(text):
-    with open(text,"r",encoding="utf_8") as file:
-        del lignes[0]
-    with open(text,"w",encoding="utf_8") as file:
-        file.writelines(lignes)
-    return None
 
 def compte_prompt(text):
-    with open(text,"r",encoding="utf_8") as file:
+    with open("prompt.txt","r",encoding="utf_8") as file:
         lignes==file.readlines()
     return len(lignes)
 
-def actualise_prompt_1(text,text_gpt):
-    #ajout du prompt sur une nouvelle ligne du fichier
-    with open(text, "a", encoding="utf_8") as file:
-        file.write(f"\n{text_gpt}")
 
-    #verification <10 lignes
-    if compte_prompt(text)>10:
-        nouv_delete_prompt(text)
- 
-    return text
-
-def get_reponse_gpt(text_gpt,files = "filename.pdf"):
-    reponse=ask_question_to_pdf(text_gpt,files = "filename.pdf")
-    with open("prompt.txt","a",encoding="utf_8") as file:
-        file.write(reponse)
-    return None
-
-def actualise_prompt_2(text, text_gpt):
-    #ajout du prompt sur une nouvelle ligne du fichier
-    with open(text, "a", encoding="utf_8") as file:
-        file.write(f"\n{text_gpt}")
-    
-    #ajout de la réponse de gpt
-    reponse_gpt=get_reponse_gpt(text_gpt,files== "filename.pdf")
-    with open(text, "a", encoding="utf_8") as file:
-        file.write(f"\n{reponse_gpt}")
-
-    #verification <10 conversations
-    if compte_prompt(text)>20:
-        nouv_delete_prompt(text)
- 
-    return text
