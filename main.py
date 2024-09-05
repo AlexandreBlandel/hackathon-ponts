@@ -29,9 +29,14 @@ def prompt():
 @app.route("/question", methods=["GET"])
 def question():
     answer = ask_question_to_pdf.ask_question_to_pdf(
+<<<<<<< HEAD
         "Tu es un fier pirate, tu dois poser une question a un matelot sur ce texte "
     )
     # "Tu es un professeur et tu m'as demandé à apprendre le texte ci-dessous, pose donc une question sur un details précis pour t'assurer que le texte est bien su"
+=======
+        "Tu es mon professeur, pose moi une question sur le texte"
+    )
+>>>>>>> 9ef1c826dfc8e34e4fabd507ab17db36679d3663
     ask_question_to_pdf.add_prompt(answer)
     return {"answer": f"{answer}"}
 
@@ -41,6 +46,7 @@ def reponse():
     prompt = request.form["prompt"]
     question = ask_question_to_pdf.read_prompt()
     texte_send = (
+<<<<<<< HEAD
         "Voici la question qui m'a été posée :"
         + f"\n"
         + question
@@ -48,6 +54,13 @@ def reponse():
         + f"\n"
         + prompt
         + "À partir du texte ci dessous, determine avec précision si la réponse donnée est juste ou non et, si elle ne l'est pas, donne la bonne réponse avec une explication claire"
+=======
+        f"Voici la question qui m'a été posée :\n{question}"
+        f"Voici la réponse que j'ai donnée :\n{prompt}"
+        "À partir du texte ci-dessous, détermine avec précision si la réponse "
+        "donnée est juste ou non et, si elle ne l'est pas, donne la bonne "
+        "réponse avec une explication claire."
+>>>>>>> 9ef1c826dfc8e34e4fabd507ab17db36679d3663
     )
     answer = ask_question_to_pdf.ask_question_to_pdf(texte_send)
     ask_question_to_pdf.reset_prompt()
