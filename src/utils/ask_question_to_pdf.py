@@ -24,7 +24,7 @@ def open_file(filepath):
 openai.api_key = os.getenv("OPENAI_API_KEY")
 openai.organization = os.getenv("OPENAI_ORGANIZATION")
 texte = "Resume moi le texte ci dessous"
-filesnom = "data/filename.pdf"
+filesnom = "filename.pdf"
 
 def read_pdf(filename):
     context = ""
@@ -83,8 +83,6 @@ def gpt3_completion(text):
     return response.choices[0].message.content
 
 
-texte = "Resume moi le texte ci dessous"
-filesnom = "filename.pdf"
 
 
 def ask_question_to_pdf(text=texte, files=filesnom):
