@@ -66,7 +66,7 @@ body {
   background-color: rgb(52, 229, 91);
   border-radius: 65px;
   border: none;
-  cursor: not-allowed;
+  cursor: grab;
 
 }
 
