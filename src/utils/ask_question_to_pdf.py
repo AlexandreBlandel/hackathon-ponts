@@ -112,15 +112,17 @@ def read_prompt():
             chaine += lignes
     return chaine
 
+
 def get_ith_line_prompt(i):
     j = 0
     with open("data/prompt.txt", "r", encoding="utf_8") as file:
         for lignes in file:
-            if(j!=i):
-                j+=1
+            if j != i:
+                j += 1
             else:
                 return lignes.strip()
     return ""
+
 
 def compte_prompt(text):
     with open("data/prompt.txt", "r", encoding="utf_8") as file:
@@ -134,7 +136,7 @@ def generate_qcm():
         file.write("")
     dic = {}
     reset_prompt()
-    fact=""
+    fact = ""
     with open("data/qcm.txt", "a", encoding="utf_8") as file:
         for i in range(4):
             if i == 0:
@@ -159,7 +161,7 @@ def generate_qcm():
                     + "De plus, cette information vraie doit imperativement provenir de ce texte source:"
                 )
                 answer = ask_question_to_pdf(text_send)
-            fact += "- " + answer +f"\n"
+            fact += "- " + answer + f"\n"
             dic[f"answer{i}"] = answer
             dic[f"{i}"] = k
     add_prompt(fact)
@@ -211,29 +213,53 @@ if button_status:
     print(file_path)
 """
 
+
 def result():
-    with open("data/qcm.txt","r",encoding="utf_8") as file:
+    with open("data/qcm.txt", "r", encoding="utf_8") as file:
         true_button = (file.read()).strip()
-    with open("data/button_qcm.txt","r",encoding="utf_8") as file:
+    with open("data/button_qcm.txt", "r", encoding="utf_8") as file:
         actual_button = (file.read()).strip()
-    if true_button == actual_button :
-        text_send = gpt3_completion("Tu es le plus grand pirate de tous les temps et moi, ton plus fidèle matelot,je viens de réussir parfaitement un QCM que tu vient de me poser!")
+    if true_button == actual_button:
+        text_send = gpt3_completion(
+            "Tu es le plus grand pirate de tous les temps et moi, ton plus fidèle matelot,je viens de réussir parfaitement un QCM que tu vient de me poser!"
+        )
     else:
-        text_send = gpt3_completion("Tu es le plus grand pirate de tous les temps et moi, ton plus fidèle matelot, je viens d'échouer sur ton QCM en ayant au moins une réponse fausse. Annonce moi cette nouvelle et dis-moi que nous allons revoir les erreurs en 2 phrases maximum")
+        text_send = gpt3_completion(
+            "Tu es le plus grand pirate de tous les temps et moi, ton plus fidèle matelot, je viens d'échouer sur ton QCM en ayant au moins une réponse fausse. Annonce moi cette nouvelle et dis-moi que nous allons revoir les erreurs en 2 phrases maximum"
+        )
         for i in range(4):
             if actual_button[i] != true_button[i]:
                 if true_button[i] == "0":
-                    text_send += "Matelot! La proposition" + get_ith_line_prompt(i) + "est fausse voyons!!"
-                    text_send += ask_question_to_pdf("Tu es le plus grand pirate de tous les temps et tu dois expliquer en 2 phrases pourquoi l'assertion" + get_ith_line_prompt(i) + "est fausse à partir du texte suivant comme unique source")
+                    text_send += (
+                        "Matelot! La proposition"
+                        + get_ith_line_prompt(i)
+                        + "est fausse voyons!!"
+                    )
+                    text_send += ask_question_to_pdf(
+                        "Tu es le plus grand pirate de tous les temps et tu dois expliquer en 2 phrases pourquoi l'assertion"
+                        + get_ith_line_prompt(i)
+                        + "est fausse à partir du texte suivant comme unique source"
+                    )
                 else:
-                    text_send += "Matelot! La proposition" + get_ith_line_prompt(i) + "est pourtant vraie!!"
-                    text_send += ask_question_to_pdf("Tu es le plus grand pirate de tous les temps et tu dois expliquer en 2 phrases pourquoi l'assertion" + get_ith_line_prompt(i) + "est vrai à partir du texte suivant comme unique source")
+                    text_send += (
+                        "Matelot! La proposition"
+                        + get_ith_line_prompt(i)
+                        + "est pourtant vraie!!"
+                    )
+                    text_send += ask_question_to_pdf(
+                        "Tu es le plus grand pirate de tous les temps et tu dois expliquer en 2 phrases pourquoi l'assertion"
+                        + get_ith_line_prompt(i)
+                        + "est vrai à partir du texte suivant comme unique source"
+                    )
     return text_send
 
-"""
+
 def change_PDF():
+    print("Verification 1")
     root = tk.Tk()
+    print("Verification 2")
     root.withdraw()  # Masquer la fenêtre principale
+    print("Verification 3")
     file_path = filedialog.askopenfilename()
     print(file_path)
     return file_path
