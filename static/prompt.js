@@ -7,6 +7,8 @@ const whiteButton = document.getElementById("white_mode-button");
 const root = document.documentElement;
 const messagesContainer = document.getElementById("messages-container");
 
+change_var = false;
+
 
 const appendHumanMessage = (message) => {
   const humanMessageElement = document.createElement("div");
@@ -93,3 +95,4 @@ whiteButton.addEventListener('click', () => {
   root.style.setProperty('--main-color', '#2a303b');
   root.style.setProperty('--border-color', 'black');
 });
+

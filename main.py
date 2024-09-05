@@ -29,7 +29,9 @@ def prompt():
 
 @app.route("/question", methods=["GET"])
 def question():
-    answer = ask_question_to_pdf.ask_question_to_pdf("Tu es un fier pirate, tu dois poser une question a un matelot sur ce texte ")
+    answer = ask_question_to_pdf.ask_question_to_pdf(
+        "Tu es un fier pirate, tu dois poser une question a un matelot sur ce texte "
+    )
     ask_question_to_pdf.add_prompt(answer)
     return {"answer": f"{answer}"}
 
@@ -47,13 +49,15 @@ def reponse():
     )
     answer = ask_question_to_pdf.ask_question_to_pdf(texte_send)
     ask_question_to_pdf.reset_prompt()
-    return {"answer" : f"{answer}"}
+    return {"answer": f"{answer}"}
+
 
 @app.route("/qcm")
 def qcm():
-    return render_template('qcm.html')
+    return render_template("qcm.html")
 
-@app.route("/add_qcm",methods=['GET'])
+
+@app.route("/add_qcm", methods=["GET"])
 def add_qcm():
     dic = ask_question_to_pdf.generate_qcm()
     ask_question_to_pdf.initialize_button()
@@ -68,3 +72,10 @@ def update_qcm():
         ask_question_to_pdf.update_button(button)
         return dic
 
+
+
+
+@app.route("/choix_pdf", methods=["GET", "POST"])
+def choice_PDF():
+    ask_question_to_pdf.change_PDF()
+    return render_template("change.html")
