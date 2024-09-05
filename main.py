@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from src.utils import ask_question_to_pdf
+import os
 
 
 app = Flask(__name__)
@@ -81,3 +82,29 @@ def solution_qcm():
 def choice_PDF():
     ask_question_to_pdf.change_PDF()
     return None
+
+
+# render_template("change.html")
+
+"""
+# Route pour la page d'upload
+@app.route("/")
+def index():
+    return render_template("index.html")  # Ta page HTML avec le formulaire
+
+
+# Route pour traiter les fichiers envoyés
+@app.route("/upload", methods=["POST"])
+def upload_file():
+    if "file-upload" not in request.files:
+        return "Aucun fichier sélectionné"
+
+    file = request.files["file-upload"]
+    print(file)
+    if file.filename == "":
+        return "Pas de fichier sélectionné"
+
+    # Sauvegarder le fichier dans le dossier uploads
+    file.save(os.path.join(app.config["UPLOAD_FOLDER"], file.filename))
+    return f"Fichier {file.filename} envoyé avec succès!"
+    """

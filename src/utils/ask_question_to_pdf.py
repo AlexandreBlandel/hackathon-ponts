@@ -3,7 +3,7 @@ from io import StringIO
 import tkinter as tk
 from tkinter import filedialog
 
-import json
+# import json
 
 import os
 import fitz
@@ -19,7 +19,6 @@ load_dotenv()
 def open_file(filepath):
     with open(filepath, "r", encoding="utf-8") as infile:
         return infile.read()
-
 
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -201,8 +200,13 @@ if button_status:
     file_path = filedialog.askopenfilename()
     print(file_path)
 """
-
-
+"""
+root = tk.Tk()
+root.withdraw()  # Masquer la fenêtre principale
+file_path = filedialog.askopenfilename()
+print(str(file_path))
+filesnom = file_path
+"""
 
 
 def change_PDF():
@@ -210,5 +214,10 @@ def change_PDF():
     root.withdraw()  # Masquer la fenêtre principale
     file_path = filedialog.askopenfilename()
     print(file_path)
-    # global filesnom=file_path
-    return None
+    return file_path
+
+
+"""
+def traite_PDF():
+    with open("UPLOAD_FOLDER.txt", "r", encoding="utf_8") as file:
+"""
