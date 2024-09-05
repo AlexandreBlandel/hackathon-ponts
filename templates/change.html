@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Ma page</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_acceuil.css') }}" />
+</head>
+
+<body>
+    <main class="main-container">
+
+        <header class="header">
+            <h1 class="header-title">PDF Modifié</h1>
+            <button id="return-button">Retour au navire</button>
+        </header>
+
+        <script>
+            document.getElementById('return-button').addEventListener('click', function () {
+                // Rediriger vers /
+                window.location.href = '/';
+            });
+        </script>
+
+    </main>
+</body>
+
+</html>

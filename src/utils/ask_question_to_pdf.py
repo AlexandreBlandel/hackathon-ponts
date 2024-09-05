@@ -134,25 +134,15 @@ def compte_prompt(text):
     return len(lignes)
 
 
-# Ouvrir fenetre dialogue
-
-# Créer la fenêtre Tkinter
-root = tk.Tk()
-root.withdraw()  # Masquer la fenêtre principale
-
-# Ouvrir une boîte de dialogue pour sélectionner un fichier
-file_path = filedialog.askopenfilename()
-
-
 """
 # Ouvrir le fichier sélectionné avec l'application par défaut
 if file_path:
     os.startfile(file_path)  # Sous Windows
 """
 
-
+"""
 # Ouvrir le fichier JSON et charger les données
-with open("prompt.json", "r") as file:
+with open("prompt.js", "r") as file:
     data = json.load(file)
 
 # Récupérer le statut du bouton
@@ -167,3 +157,13 @@ if button_status:
     # Ouvrir une boîte de dialogue pour sélectionner un fichier
     file_path = filedialog.askopenfilename()
     print(file_path)
+"""
+
+
+def change_PDF():
+    root = tk.Tk()
+    root.withdraw()  # Masquer la fenêtre principale
+    file_path = filedialog.askopenfilename()
+    print(file_path)
+    # global filesnom=file_path
+    return None

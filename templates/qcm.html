@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <title>Ma page</title>
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style_acceuil.css') }}"
-    />
-  </head>
+<head>
+  <title>Ma page</title>
 
-  <body>
-    <main class="main-container">
-      <header class="header">
-        <h1 class="header-title"></h1>
-      </header>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style_acceuil.css') }}" />
+</head>
 
-      <section id="messages-container" class="messages-container">
-        <div class="message message-ai">
-          Lesquelles de ces affirmations sont réelles?
-        </div>
-      </section>
+<body>
+  <main class="main-container">
+    <button id="return-button">Retour au navire</button>
+    <header class="header">
+      <h1 class="header-title"></h1>
+    </header>
 
-      <button id="Bouton1">Reponse 1</button>
-      
-      <button id="Bouton2">Reponse 2</button>
+    <script>
+      document.getElementById('return-button').addEventListener('click', function () {
+        // Rediriger vers /
+        window.location.href = '/';
+      });
+    </script>
 
-      <button id="Bouton3">Reponse 3</button>
-      
-      <button id="Bouton4">Reponse 4</button>
 
-      <button id="Validate">Je bloque ces paroles</button>
+    <section id="messages-container" class="messages-container">
+      <div class="message message-ai">
+        Lesquelles de ces affirmations sont réelles?
+      </div>
+    </section>
 
-      <script src="{{ url_for('static', filename='qcm.js') }}">
+    <button id="Bouton1">Reponse 1</button>
+
+    <button id="Bouton2">Reponse 2</button>
+
+    <button id="Bouton3">Reponse 3</button>
+
+    <button id="Bouton4">Reponse 4</button>
+
+    <button id="Validate">Je bloque ces paroles</button>
+
+    <script src="{{ url_for('static', filename='qcm.js') }}">
 
     </script>
-    </main>
-  </body>
+  </main>
+</body>
+
 </html>
