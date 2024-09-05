@@ -45,3 +45,6 @@ for(let i = 0; i < 4; i++){
 });
 } 
 
+Validate.addEventListener("click", () => {
+       window.location.href = '/solution_qcm';
+});

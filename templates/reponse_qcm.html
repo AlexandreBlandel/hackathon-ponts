@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <title>Ma page</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+  <main class="main-container">
+
+    <button type="button" class="button" id="return-button">
+      Retour au navire
+    </button>
+
+    <header class="header">
+      <h1 class="header-title">Ouverture du trésor!</h1>
+
+      <button type="button" class="button" id="dark_mode-button">
+        Mode sombre
+      </button>
+
+      <button type="button" class="button" id="white_mode-button">
+        Mode clair
+      </button>
+
+
+
+
+    </header>
+
+    <script>
+      document.getElementById('return-button').addEventListener('click', function () {
+        // Rediriger vers /
+        window.location.href = '/';
+      });
+    </script>
+
+    <section id="messages-container" class="messages-container">
+      <div class="message message-ai">
+        Voici tes resultats moussaillon!!
+      </div>
+    </section>
+
+
+    <script src="{{ url_for('static', filename='result_qcm.js') }}"></script>
+  </main>
+</body>
+
+</html>

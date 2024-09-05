@@ -21,6 +21,7 @@ def open_file(filepath):
         return infile.read()
 
 
+
 openai.api_key = os.getenv("OPENAI_API_KEY")
 openai.organization = os.getenv("OPENAI_ORGANIZATION")
 texte = "Resume moi le texte ci dessous"
@@ -187,6 +188,8 @@ if button_status:
     file_path = filedialog.askopenfilename()
     print(file_path)
 """
+
+
 
 
 def change_PDF():

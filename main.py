@@ -73,7 +73,13 @@ def update_qcm():
         return dic
 
 
+@app.route("/solution_qcm")
+def solution_qcm():
+    return render_template("reponse_qcm.html")
 
+
+@app.route("/get_aide_text")
+    return {}
 
 @app.route("/choix_pdf", methods=["GET", "POST"])
 def choice_PDF():
