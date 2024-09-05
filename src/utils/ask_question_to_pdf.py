@@ -1,4 +1,10 @@
 from io import StringIO
+
+import tkinter as tk
+from tkinter import filedialog
+
+import json
+
 import os
 import fitz
 import openai
@@ -126,3 +132,38 @@ def compte_prompt(text):
     with open("prompt.txt", "r", encoding="utf_8") as file:
         lignes = file.readlines()
     return len(lignes)
+
+
+# Ouvrir fenetre dialogue
+
+# Créer la fenêtre Tkinter
+root = tk.Tk()
+root.withdraw()  # Masquer la fenêtre principale
+
+# Ouvrir une boîte de dialogue pour sélectionner un fichier
+file_path = filedialog.askopenfilename()
+
+
+"""
+# Ouvrir le fichier sélectionné avec l'application par défaut
+if file_path:
+    os.startfile(file_path)  # Sous Windows
+"""
+
+
+# Ouvrir le fichier JSON et charger les données
+with open("prompt.json", "r") as file:
+    data = json.load(file)
+
+# Récupérer le statut du bouton
+button_status = data["change_PDF-button"]["is_active"]
+if button_status:
+    # Ouvrir fenetre dialogue
+
+    # Créer la fenêtre Tkinter
+    root = tk.Tk()
+    root.withdraw()  # Masquer la fenêtre principale
+
+    # Ouvrir une boîte de dialogue pour sélectionner un fichier
+    file_path = filedialog.askopenfilename()
+    print(file_path)
