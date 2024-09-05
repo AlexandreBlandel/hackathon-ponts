@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from src.utils import ask_question_to_pdf
+from random import randint
 
 
 app = Flask(__name__)
@@ -39,3 +40,33 @@ def reponse():
     answer = ask_question_to_pdf.ask_question_to_pdf(texte_send)
     ask_question_to_pdf.reset_prompt()
     return {"answer" : f"{answer}"}
+
+@app.route("/qcm")
+def qcm():
+    return render_template('qcm.html')
+
+@app.route("/add_qcm",methods=['GET'])
+def add_qcm():
+    with open("qcm.txt","w",encoding = "utf_8") as file:
+        file.write("")
+    fact = ""
+    dic = {}
+    with open("qcm.txt","a",encoding="utf_8") as file:
+        for i in range(4):
+            if i==0:
+                Old_fact = ""
+            else:
+                Old_fact = "De plus, cette affirmation ne doit pas être directement lié aux affirmations suivantes :" + fact
+            k = randint(0,1)
+            file.write(f"{k}")
+            if k==0:
+                text_send = "Donne moi une réponse en une phrase courte, cette phrase doit contenir une affirmation fausse qui ne porte pas sur les compétences des ingenieurs." + Old_fact + "De plus, cette affirmation doit être facilement réfutable à partir de ce texte:"
+                answer = ask_question_to_pdf.ask_question_to_pdf(text_send)
+            else:
+                text_send = "Donne moi une réponse en une phrase courte, cette phrase doit contenir une affirmation vraie." + Old_fact + "De plus, cette affirmation vraie doit imperativement provenir de ce texte source:"
+                answer = ask_question_to_pdf.ask_question_to_pdf(text_send)
+            fact += f"- " + answer + f"\n"
+            dic[f"answer{i}"] = answer
+            dic[f"{i}"]=k
+    return dic
+        

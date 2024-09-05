@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Ma page</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style_acceuil.css') }}"
+    />
+  </head>
+
+  <body>
+    <main class="main-container">
+      <header class="header">
+        <h1 class="header-title"></h1>
+      </header>
+
+      <section id="messages-container" class="messages-container">
+        <div class="message message-ai">
+          Lesquelles de ces affirmations sont réelles?
+        </div>
+      </section>
+
+      <button id="Bouton1">Reponse 1</button>
+      
+      <button id="Bouton2">Reponse 2</button>
+
+      <button id="Bouton3">Reponse 3</button>
+      
+      <button id="Bouton4">Reponse 4</button>
+
+      <button id="Validate">Je bloque ces paroles</button>
+
+      <script src="{{ url_for('static', filename='qcm.js') }}">
+
+    </script>
+    </main>
+  </body>
+</html>
