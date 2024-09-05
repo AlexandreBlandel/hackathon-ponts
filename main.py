@@ -4,7 +4,6 @@ from flask import request
 from src.utils import ask_question_to_pdf
 
 
-
 app = Flask(__name__)
 
 
@@ -64,14 +63,13 @@ def add_qcm():
     return dic
 
 
-@app.route("/update_qcm", methods=['POST'])
+@app.route("/update_qcm", methods=["POST"])
 def update_qcm():
     if request.method == "POST":
         dic = {}
         button = int(request.form["button"])
         ask_question_to_pdf.update_button(button)
         return dic
-
 
 @app.route("/solution_qcm")
 def solution_qcm():
@@ -83,5 +81,5 @@ def solution_qcm():
 
 @app.route("/choix_pdf", methods=["GET", "POST"])
 def choice_PDF():
-    ask_question_to_pdf.change_PDF()
+    # ask_question_to_pdf.change_PDF()
     return render_template("change.html")

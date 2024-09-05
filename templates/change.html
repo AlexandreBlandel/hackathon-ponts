@@ -22,6 +22,14 @@
             });
         </script>
 
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <!-- Champ de saisie pour sélectionner un fichier -->
+            <input type="file" id="file-upload" name="file-upload" class="file-input" />
+
+            <!-- Bouton pour envoyer le fichier -->
+            <button type="submit" class="button" id="send-button">Envoyer</button>
+        </form>
+
     </main>
 </body>
 

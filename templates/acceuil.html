@@ -14,12 +14,6 @@
       <h1 class="header-title">Pirates des Ponts'raibes</h1>
     </header>
 
-    <script>
-      document.getElementById('Bouton3').addEventListener('click', function () {
-        // Rediriger vers /
-        window.location.href = '/choix_pdf';
-      });
-    </script>
 
     <section id="messages-container" class="messages-container">
       <div class="message message-ai">
@@ -27,10 +21,16 @@
       </div>
     </section>
 
+    <script>
+      document.getElementById('Bouton3').addEventListener('click', function () {
+        // Rediriger vers /
+        window.location.href = '/choix_pdf';
+      });
+    </script>
+
     <button id="Bouton1">Mer de savoir</button>
 
     <button id="Bouton2">Crique du QCM</button>
-
 
 
     <script src="{{ url_for('static', filename='acceuil.js') }}">
