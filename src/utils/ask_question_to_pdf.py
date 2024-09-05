@@ -23,6 +23,8 @@ def open_file(filepath):
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 openai.organization = os.getenv("OPENAI_ORGANIZATION")
+texte = "Resume moi le texte ci dessous"
+filesnom = "filename.pdf"
 
 
 def read_pdf(filename):
@@ -82,10 +84,6 @@ def gpt3_completion(text):
     return response.choices[0].message.content
 
 
-texte = "Resume moi le texte ci dessous"
-filesnom = "filename.pdf"
-
-
 def ask_question_to_pdf(text=texte, files=filesnom):
     filename = os.path.join(os.path.dirname(__file__), files)
     document = read_pdf(filename)
@@ -97,50 +95,37 @@ def ask_question_to_pdf(text=texte, files=filesnom):
 
 
 def reset_prompt():
-    with open("prompt.txt", "w", encoding="utf_8") as file:
+    with open("data/prompt.txt", "w", encoding="utf_8") as file:
         file.write("")
 
 
 def add_prompt(text):
-    with open("prompt.txt", "a", encoding="utf_8") as file:
+    with open("data/prompt.txt", "a", encoding="utf_8") as file:
         file.write(text)
     return None
 
 
 def read_prompt():
-    with open("prompt.txt", "r", encoding="utf_8") as file:
+    with open("data/prompt.txt", "r", encoding="utf_8") as file:
         chaine = ""
         for lignes in file:
             chaine += lignes
     return chaine
 
 
-def delete_old_prompt(text):
-    with open(text, "r", encoding="utf_8") as file:
-        i = 0
-        chaine = ""
-        for lignes in file:
-            if i == 0:
-                i = 1
-            else:
-                chaine += lignes
-    with open(text, "w", encoding="utf_8") as file:
-        file.write(lignes)
-    return None
-
-
 def compte_prompt(text):
-    with open("prompt.txt", "r", encoding="utf_8") as file:
+    with open("data/prompt.txt", "r", encoding="utf_8") as file:
         lignes = file.readlines()
     return len(lignes)
 
 
 def generate_qcm():
-    with open("qcm.txt", "w", encoding="utf_8") as file:
+
+    with open("data/qcm.txt", "w", encoding="utf_8") as file:
         file.write("")
     fact = ""
     dic = {}
-    with open("qcm.txt", "a", encoding="utf_8") as file:
+    with open("data/qcm.txt", "a", encoding="utf_8") as file:
         for i in range(4):
             if i == 0:
                 Old_fact = ""
@@ -172,15 +157,16 @@ def generate_qcm():
 
 
 def initialize_button():
-    with open("button_qcm.txt", "w", encoding="utf_8") as file:
+    with open("data/button_qcm.txt", "w", encoding="utf_8") as file:
         file.write("0000")
 
 
 def update_button(i):
-    with open("button_qcm.txt", "r", encoding="utf_8") as file:
+    with open("data/button_qcm.txt", "r", encoding="utf_8") as file:
         actual_button = (file.read()).strip()
     print(actual_button)
-    with open("button_qcm.txt", "w", encoding="utf_8") as file:
+    with open("data/button_qcm.txt", "w", encoding="utf_8") as file:
+
         chaine = ""
         for j in range(4):
             if j == i:
