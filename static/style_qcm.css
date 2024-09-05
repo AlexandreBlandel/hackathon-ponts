@@ -13,7 +13,13 @@
 }
 
 body {
-    background-color: var(--body-background-color);
+    background-image: url('images/IA_Crique.jpg');
+    display: cover;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #1960ee;
     padding: 0;
     margin: 0;
     font-family: sans-serif;
@@ -22,7 +28,7 @@ body {
 .main-container {
     max-width: var(--max-body-width);
     min-height: 100vh;
-    background-color: var(--main-background-color);
+    /*background-color: var(--main-background-color);*/
     color: var(--main-color);
     padding: 50px;
     margin: 0 auto;
@@ -41,6 +47,7 @@ body {
     flex-direction: column;
     gap: 10px;
     margin-bottom: 30px;
+    color: white;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -52,7 +59,7 @@ body {
 
 
 #Bouton1 {
-    padding: 50px 75px;
+    padding: 5px 15px;
     font-size: 96;
     background-color: rgb(12, 160, 44);
     border-radius: 65px;
@@ -61,7 +68,7 @@ body {
 }
 
 #Bouton2 {
-    padding: 50px 75px;
+    padding: 5px 15px;
     font-size: 96;
     background-color: rgb(52, 229, 91);
     border-radius: 65px;
@@ -71,7 +78,7 @@ body {
 }
 
 #Bouton3 {
-    padding: 50px 75px;
+    padding: 5px 15px;
     font-size: 96;
     background-color: rgb(12, 160, 44);
     border-radius: 65px;
@@ -80,7 +87,7 @@ body {
 }
 
 #Bouton4 {
-    padding: 50px 75px;
+    padding: 5px 15px;
     font-size: 96;
     background-color: rgb(52, 229, 91);
     border-radius: 65px;

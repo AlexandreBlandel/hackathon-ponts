@@ -12,28 +12,38 @@
   box-sizing: border-box;
 }
 
+
 body {
-  background-color: var(--body-background-color);
+  background-image: url('images/IA_Pirate_2.jpg');
+  display: cover;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #1960ee;
   padding: 0;
   margin: 0;
   font-family: sans-serif;
 }
 
+
 .main-container {
   max-width: var(--max-body-width);
   min-height: 100vh;
-  background-color: var(--main-background-color);
+  /*background-color: var(--main-background-color);*/
   color: var(--main-color);
   padding: 50px;
   margin: 0 auto;
 }
 
 .header {
-  text-align: center;
+  text-align: right;
 }
 
 .header-title {
-  margin-top: 0;
+  margin-right: 100px;
+  margin-top: 0px;
+  font-size: 30;
 }
 
 .messages-container {
@@ -53,6 +63,7 @@ body {
 
 #Bouton1 {
   padding: 50px 75px;
+  margin: 50px 0 0 70px;
   font-size: 96;
   background-color: rgb(12, 160, 44);
   border-radius: 65px;
