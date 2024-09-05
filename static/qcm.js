@@ -1,8 +1,11 @@
-const Button1 = document.getElementById("Bouton1");
-const Button2 = document.getElementById("Bouton2");
-const Button3 = document.getElementById("Bouton3");
-const Button4 = document.getElementById("Bouton4");
+const Button = [document.getElementById("Bouton1"),document.getElementById("Bouton2"),document.getElementById("Bouton3"),document.getElementById("Bouton4")];
+
 const Validate = document.getElementById("Validate");
+
+for (let pas = 0; pas < 4; pas++) {
+  Button[pas].style.backgroundColor = 'red';
+}
+
 
 
 
@@ -16,11 +19,29 @@ const InitPage = async () => {
     const affirm3 = result.answer2;
     const affirm4 = result.answer3;
 
-    Button1.innerHTML = affirm1
-    Button2.innerHTML = affirm2
-    Button3.innerHTML = affirm3
-    Button4.innerHTML = affirm4
+    Button[0].innerHTML = affirm1
+    Button[1].innerHTML = affirm2
+    Button[2].innerHTML = affirm3
+    Button[3].innerHTML = affirm4
 };
 
 InitPage()
+
+
+for(let i = 0; i < 4; i++){
+    Button[i].addEventListener("click", () => {
+        const data = new FormData();
+        data.append("button", i);
+            if(Button[i].style.backgroundColor == 'red'){
+                Button[i].style.backgroundColor = 'green'
+            }
+            else{
+                Button[i].style.backgroundColor = 'red'
+            }
+            const response = fetch("/update_qcm", {
+                method: "POST",
+                body: data,
+  });
+});
+} 
 

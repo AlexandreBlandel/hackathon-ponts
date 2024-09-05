@@ -5,6 +5,7 @@ import openai
 from dotenv import load_dotenv
 from nltk.tokenize import sent_tokenize
 from openai import OpenAI
+from random import randint
 
 load_dotenv()
 
@@ -126,3 +127,47 @@ def compte_prompt(text):
     with open("prompt.txt", "r", encoding="utf_8") as file:
         lignes = file.readlines()
     return len(lignes)
+
+
+def generate_qcm():
+    with open("qcm.txt","w",encoding = "utf_8") as file:
+        file.write("")
+    fact = ""
+    dic = {}
+    with open("qcm.txt","a",encoding="utf_8") as file:
+        for i in range(4):
+            if i==0:
+                Old_fact = ""
+            else:
+                Old_fact = "De plus, cette affirmation ne doit pas être directement lié aux affirmations suivantes :" + fact
+            k = randint(0,1)
+            file.write(f"{k}")
+            if k==0:
+                text_send = "Donne moi une réponse en une phrase courte, cette phrase doit contenir une affirmation fausse qui ne porte pas sur les compétences des ingenieurs." + Old_fact + "De plus, cette affirmation doit être facilement réfutable à partir de ce texte:"
+                answer = ask_question_to_pdf(text_send)
+            else:
+                text_send = "Donne moi une réponse en une phrase courte, cette phrase doit contenir une affirmation vraie." + Old_fact + "De plus, cette affirmation vraie doit imperativement provenir de ce texte source:"
+                answer = ask_question_to_pdf(text_send)
+            fact += f"- " + answer + f"\n"
+            dic[f"answer{i}"] = answer
+            dic[f"{i}"]=k
+    return dic
+
+
+def initialize_button():
+    with open("button_qcm.txt","w",encoding = "utf_8") as file:
+        file.write("0000")
+
+def update_button(i):
+    with open("button_qcm.txt","r",encoding = "utf_8") as file:
+        actual_button = (file.read()).strip()
+    print(actual_button)
+    with open("button_qcm.txt","w",encoding = "utf_8") as file:
+        chaine = ""
+        for j in range(4):
+            if(j == i):
+                chaine += str(int(not(bool(int(actual_button[j])))))
+            else:
+                chaine += actual_button[j]
+        file.write(chaine)
+
