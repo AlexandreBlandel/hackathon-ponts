@@ -1,0 +1,8 @@
+#send-button {
+    padding: 15px 30px;
+    font-size: 16;
+    background-color: rgb(163, 241, 68);
+    border-radius: 5px;
+    border: none;
+    cursor: grab;
+}
