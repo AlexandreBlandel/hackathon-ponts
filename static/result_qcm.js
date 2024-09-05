@@ -22,7 +22,18 @@ const appendAIMessage = async (messagePromise) => {
   loaderElement.innerHTML = messageToAppend;
 };
 
+const handlePrompt = async () => {
+  await appendAIMessage(async () => {
+    const response = await fetch("/get_aide_qcm", {
+      method: "GET",
+    });
+    const result = await response.json();
+    const question = result.answer;
+    return question;
+  });
+};
 
+handlePrompt();
 
 
 darkButton.addEventListener('click', () => {

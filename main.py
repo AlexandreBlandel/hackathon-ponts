@@ -78,6 +78,15 @@ def solution_qcm():
     return render_template("reponse_qcm.html")
 
 
+
+@app.route("/get_aide_qcm", methods=["GET"])
+def get_aide_qcm():
+    text = ask_question_to_pdf.result()
+    dic = {}
+    dic['answer'] = text
+    return dic
+
+
 @app.route("/choix_pdf", methods=["GET", "POST"])
 def choice_PDF():
     ask_question_to_pdf.change_PDF()

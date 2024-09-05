@@ -112,6 +112,15 @@ def read_prompt():
             chaine += lignes
     return chaine
 
+def get_ith_line_prompt(i):
+    j = 0
+    with open("data/prompt.txt", "r", encoding="utf_8") as file:
+        for lignes in file:
+            if(j!=i):
+                j+=1
+            else:
+                return lignes.strip()
+    return ""
 
 def compte_prompt(text):
     with open("data/prompt.txt", "r", encoding="utf_8") as file:
@@ -123,36 +132,37 @@ def generate_qcm():
 
     with open("data/qcm.txt", "w", encoding="utf_8") as file:
         file.write("")
-    fact = ""
     dic = {}
+    reset_prompt()
+    fact=""
     with open("data/qcm.txt", "a", encoding="utf_8") as file:
         for i in range(4):
             if i == 0:
                 Old_fact = ""
             else:
-                Old_fact = (
-                    "De plus, cette affirmation ne doit pas être directement lié aux affirmations suivantes :"
-                    + fact
-                )
+                Old_fact = f"De plus, cette information doit impérativement traiter d'une information complètement differente des {i} assertions suivantes:"
             k = randint(0, 1)
             file.write(f"{k}")
             if k == 0:
                 text_send = (
-                    "Donne moi une réponse en une phrase courte, cette phrase doit contenir une affirmation fausse qui ne porte pas sur les compétences des ingenieurs."
+                    "Donne moi une réponse en une phrase courte, cette phrase doit contenir une information fausse. Pour créer cette fausse information."
                     + Old_fact
-                    + "De plus, cette affirmation doit être facilement réfutable à partir de ce texte:"
+                    + fact
+                    + "De plus, cette information doit être en rapport avec le texte ci-dessous et contredite directement par le texte source ci-dessous:"
                 )
                 answer = ask_question_to_pdf(text_send)
             else:
                 text_send = (
-                    "Donne moi une réponse en une phrase courte, cette phrase doit contenir une affirmation vraie."
+                    "Donne moi une réponse en une phrase courte, cette phrase doit contenir une information vraie."
                     + Old_fact
-                    + "De plus, cette affirmation vraie doit imperativement provenir de ce texte source:"
+                    + fact
+                    + "De plus, cette information vraie doit imperativement provenir de ce texte source:"
                 )
                 answer = ask_question_to_pdf(text_send)
-            fact += f"- " + answer + f"\n"
+            fact += "- " + answer +f"\n"
             dic[f"answer{i}"] = answer
             dic[f"{i}"] = k
+    add_prompt(fact)
     return dic
 
 
@@ -200,15 +210,27 @@ if button_status:
     file_path = filedialog.askopenfilename()
     print(file_path)
 """
-"""
-root = tk.Tk()
-root.withdraw()  # Masquer la fenêtre principale
-file_path = filedialog.askopenfilename()
-print(str(file_path))
-filesnom = file_path
-"""
 
+def result():
+    with open("data/qcm.txt","r",encoding="utf_8") as file:
+        true_button = (file.read()).strip()
+    with open("data/button_qcm.txt","r",encoding="utf_8") as file:
+        actual_button = (file.read()).strip()
+    if true_button == actual_button :
+        text_send = gpt3_completion("Tu es le plus grand pirate de tous les temps et moi, ton plus fidèle matelot,je viens de réussir parfaitement un QCM que tu vient de me poser!")
+    else:
+        text_send = gpt3_completion("Tu es le plus grand pirate de tous les temps et moi, ton plus fidèle matelot, je viens d'échouer sur ton QCM en ayant au moins une réponse fausse. Annonce moi cette nouvelle et dis-moi que nous allons revoir les erreurs en 2 phrases maximum")
+        for i in range(4):
+            if actual_button[i] != true_button[i]:
+                if true_button[i] == "0":
+                    text_send += "Matelot! La proposition" + get_ith_line_prompt(i) + "est fausse voyons!!"
+                    text_send += ask_question_to_pdf("Tu es le plus grand pirate de tous les temps et tu dois expliquer en 2 phrases pourquoi l'assertion" + get_ith_line_prompt(i) + "est fausse à partir du texte suivant comme unique source")
+                else:
+                    text_send += "Matelot! La proposition" + get_ith_line_prompt(i) + "est pourtant vraie!!"
+                    text_send += ask_question_to_pdf("Tu es le plus grand pirate de tous les temps et tu dois expliquer en 2 phrases pourquoi l'assertion" + get_ith_line_prompt(i) + "est vrai à partir du texte suivant comme unique source")
+    return text_send
 
+"""
 def change_PDF():
     root = tk.Tk()
     root.withdraw()  # Masquer la fenêtre principale
