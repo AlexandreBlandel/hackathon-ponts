@@ -83,7 +83,7 @@ darkButton.addEventListener('click', () => {
   root.style.setProperty('--body-background-color', '#bbc8dc');
   root.style.setProperty('--main-background-color', '#376b6c');
   root.style.setProperty('--main-color', '#bbc8dc');
-  root.style.setProperty('--border-color', 'blue');
+  root.style.setProperty('--border-color', 'white');
 });
 
 whiteButton.addEventListener('click', () => {
@@ -91,5 +91,5 @@ whiteButton.addEventListener('click', () => {
   root.style.setProperty('--body-background-color', '#f5f6f8');
   root.style.setProperty('--main-background-color', '#ffffff');
   root.style.setProperty('--main-color', '#2a303b');
-  root.style.setProperty('--border-color', '#cccccc');
+  root.style.setProperty('--border-color', 'black');
 });

@@ -1,10 +1,10 @@
 :root {
-  --body-background-color: #f5f6f8;
-  --main-background-color: #ffffff;
+  --body-background-color: #1960ee;
+  --main-background-color: #5863d8;
   --main-color: #2a303b;
   --max-body-width: 700px;
-  --border-color: #cccccc;
-  --secondary-color: #fff6d3;
+  --border-color: #ee329a;
+  --secondary-color: #090c17;
   --loader-bullet-size: 6px;
 }
 
@@ -41,14 +41,40 @@ body {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 30px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .message {
-  border: 1px solid var(--border-color);
+  border: 0px solid var(--border-color);
   border-radius: 5px;
   padding: 10px 15px;
 }
 
+
+#Bouton1 {
+  padding: 50px 75px;
+  font-size: 96;
+  background-color: rgb(12, 160, 44);
+  border-radius: 65px;
+  border: none;
+  cursor: grab;
+}
+
+#Bouton2 {
+  padding: 50px 75px;
+  font-size: 96;
+  background-color: rgb(52, 229, 91);
+  border-radius: 65px;
+  border: none;
+  cursor: not-allowed;
+
+}
+
+/*
+#messages-container {
+  font-size: 36;
+}
+*/
 
 .button {
   border: 1px solid var(--border-color);

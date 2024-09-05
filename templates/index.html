@@ -9,8 +9,13 @@
 
 <body>
   <main class="main-container">
+
+    <button type="button" class="button" id="return-button">
+      Retour au navire
+    </button>
+
     <header class="header">
-      <h1 class="header-title">Mon A.I.de mémoire</h1>
+      <h1 class="header-title">Mer de savoir</h1>
 
       <button type="button" class="button" id="dark_mode-button">
         Mode sombre
@@ -20,12 +25,24 @@
         Mode clair
       </button>
 
+      <button type="button" class="button" id="choice_PDF-button">
+        Choix PDF
+      </button>
+
+
+
     </header>
+
+    <script>
+      document.getElementById('return-button').addEventListener('click', function () {
+        // Rediriger vers /
+        window.location.href = '/';
+      });
+    </script>
 
     <section id="messages-container" class="messages-container">
       <div class="message message-ai">
-        Je suis le père Fouras ! Discute avec moi pour acquérir des connaissances ! Réponds aux questions pour gagner
-        des boyards !!
+        Matelot ! Discutons de ce merveilleux PDF arrivé tantôt par pigeon voyageur !
       </div>
     </section>
 
@@ -37,7 +54,7 @@
       <button type="submit" class="button" id="submit-button">Envoyer</button>
 
       <button type="button" class="button" id="question-button">
-        Gagne des Boyards !
+        Gagne le respect du capitaine !
       </button>
     </form>
 

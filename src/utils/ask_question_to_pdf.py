@@ -66,63 +66,63 @@ def split_text(text, chunk_size=5000):
         chunks.append(current_chunk.getvalue())
     return chunks
 
+
 def gpt3_completion(text):
     client = OpenAI()
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": text}
-        ]
+        model="gpt-3.5-turbo", messages=[{"role": "system", "content": text}]
     )
     return response.choices[0].message.content
 
-def ask_question_to_pdf(text=f"Resume moi le texte ci dessous",files = "filename.pdf"):
+
+texte = "Resume moi le texte ci dessous"
+filesnom = "filename.pdf"
+
+
+def ask_question_to_pdf(text=texte, files=filesnom):
     filename = os.path.join(os.path.dirname(__file__), files)
     document = read_pdf(filename)
     chunks = split_text(document)
     pdftext = ""
     for t in chunks:
-        pdftext += t + f"\n"
-    return gpt3_completion(text + f"\n\n" + pdftext)
+        pdftext += t + f"{t}\n"
+    return gpt3_completion(text + f"{text}\n\n{pdftext}" + pdftext)
 
 
 def reset_prompt():
-    with open("prompt.txt","w",encoding="utf_8") as file:
+    with open("prompt.txt", "w", encoding="utf_8") as file:
         file.write("")
 
 
-
 def add_prompt(text):
-    with open("prompt.txt","a",encoding="utf_8") as file:
+    with open("prompt.txt", "a", encoding="utf_8") as file:
         file.write(text)
     return None
 
 
 def read_prompt():
-    with open("prompt.txt","r",encoding="utf_8") as file:
-        chaine=f""
-        for lignes in file :
+    with open("prompt.txt", "r", encoding="utf_8") as file:
+        chaine = ""
+        for lignes in file:
             chaine += lignes
     return chaine
 
 
 def delete_old_prompt(text):
-    with open(text,"r",encoding="utf_8") as file:
+    with open(text, "r", encoding="utf_8") as file:
         i = 0
-        chaine = f""
+        chaine = ""
         for lignes in file:
-            if i==0:
-                i=1
+            if i == 0:
+                i = 1
             else:
                 chaine += lignes
-    with open(text,"w",encoding="utf_8") as file:
+    with open(text, "w", encoding="utf_8") as file:
         file.write(lignes)
     return None
 
 
 def compte_prompt(text):
-    with open("prompt.txt","r",encoding="utf_8") as file:
-        lignes==file.readlines()
+    with open("prompt.txt", "r", encoding="utf_8") as file:
+        lignes = file.readlines()
     return len(lignes)
-
-
