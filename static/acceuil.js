@@ -10,6 +10,9 @@ classic_button.addEventListener('click', function () {
     window.location.href = "/hello"
 });
 
+qcm_button.addEventListener('click', function () {
+    window.location.href = "/qcm"
+});
 
 
 

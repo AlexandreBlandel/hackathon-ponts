@@ -23,11 +23,7 @@
 
     <button id="Bouton2">Crique du QCM</button>
 
-    <script>
-      document.getElementById('Bouton1').addEventListener('click', function () {
-        // Rediriger vers /hello
-        window.location.href = '/hello';
-      });
+    <script src="{{ url_for('static', filename='acceuil.js') }}">
     </script>
   </main>
 </body>
