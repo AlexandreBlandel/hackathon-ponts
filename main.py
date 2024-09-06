@@ -2,7 +2,6 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from src.utils import ask_question_to_pdf
-import os
 
 
 app = Flask(__name__)
@@ -30,7 +29,8 @@ def prompt():
 @app.route("/question", methods=["GET"])
 def question():
     answer = ask_question_to_pdf.ask_question_to_pdf(
-        "Tu es un fier pirate, tu dois poser une question a un matelot sur ce texte "
+        "Tu es un fier pirate, tu dois poser une "
+        + "question a un matelot sur ce texte "
     )
     ask_question_to_pdf.add_prompt(answer)
     return {"answer": f"{answer}"}
