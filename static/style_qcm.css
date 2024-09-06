@@ -96,6 +96,19 @@ body {
 
 }
 
+#return-button {
+    /*background-color: red;*/
+    background-image: url("images/IA_Logo_Retour.jpg");
+    background-size: contain;
+    border: none;
+    width: 70px;
+    height: 70px;
+    border-radius: 60px;
+    margin-top: 2px;
+    margin-left: 4px;
+    cursor: zoom-out;
+}
+
 #Validate {
     border: 2px solid black;
     border-radius: 5px;
