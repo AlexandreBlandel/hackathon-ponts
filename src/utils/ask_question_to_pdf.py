@@ -24,7 +24,7 @@ def open_file(filepath):
 openai.api_key = os.getenv("OPENAI_API_KEY")
 openai.organization = os.getenv("OPENAI_ORGANIZATION")
 texte = "Resume moi le texte ci dessous"
-filesnom = "filename.pdf"
+filesnom = "filename_mensonger.pdf"
 
 
 def read_pdf(filename):

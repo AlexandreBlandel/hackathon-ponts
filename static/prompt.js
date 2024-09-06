@@ -83,7 +83,7 @@ questionButton.addEventListener("click", handleQuestionClick);
 darkButton.addEventListener('click', () => {
 
   root.style.setProperty('--body-background-color', '#bbc8dc');
-  root.style.setProperty('--main-background-color', '#376b6c');
+  root.style.setProperty('--main-background-color', '#257c7e');
   root.style.setProperty('--main-color', '#bbc8dc');
   root.style.setProperty('--border-color', 'white');
 });
