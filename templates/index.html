@@ -8,6 +8,10 @@
 </head>
 
 <body>
+  <audio id="background-music" autoplay loop>
+      <source src="{{ url_for('static', filename='music/index.mp3') }}" type="audio/mp3">
+      Votre navigateur ne supporte pas l'élément audio.
+  </audio>
   <main class="main-container">
 
     <button type="button" class="button" id="return-button">
