@@ -30,7 +30,7 @@ def prompt():
 @app.route("/question", methods=["GET"])
 def question():
     answer = ask_question_to_pdf.ask_question_to_pdf(
-        "Tu es un fier pirate, tu dois poser une question a un matelot sur ce texte "
+        "Tu dois desormais me poser une courte question pour verifier que je connais bien ce texte:"
     )
     ask_question_to_pdf.add_prompt(answer)
     return {"answer": f"{answer}"}
@@ -43,9 +43,11 @@ def reponse():
     texte_send = (
         f"Voici la question qui m'a été posée :\n{question}"
         f"Voici la réponse que j'ai donnée :\n{prompt}"
-        "À partir du texte ci-dessous, détermine avec précision si la réponse "
-        "donnée est juste ou non et, si elle ne l'est pas, donne la bonne "
-        "réponse avec une explication claire."
+        "À partir du texte ci-dessous et uniquement avec le texte détermine si la réponse "
+        "donnée est correcte ou non et, si elle ne l'est pas, donne la bonne "
+        "réponse avec une explication claire"
+        "Et si elle est correcte felicite moi" 
+        "Tu dois effectuer ta réponse en parlant comme le plus grand pirate."
     )
     answer = ask_question_to_pdf.ask_question_to_pdf(texte_send)
     ask_question_to_pdf.reset_prompt()

@@ -24,7 +24,7 @@ def open_file(filepath):
 openai.api_key = os.getenv("OPENAI_API_KEY")
 openai.organization = os.getenv("OPENAI_ORGANIZATION")
 texte = "Resume moi le texte ci dessous"
-filesnom = "filename_mensonger.pdf"
+filesnom = "filename.pdf"
 
 
 def read_pdf(filename):
@@ -91,7 +91,7 @@ def ask_question_to_pdf(text=texte, files=filesnom):
     pdftext = ""
     for t in chunks:
         pdftext += t + f"{t}\n"
-    return gpt3_completion(text + f"{text}\n\n{pdftext}" + pdftext)
+    return gpt3_completion(text + f"Tu es le grand Capitaine Mousse, le plus grand pirate de tous les temps et je suis ton plus fidèle matelot, toutes tes paroles doivent être celles d'un veritable pirate en rajoutant les mots moussaillon, matelot, abordage, oyoy par exemple. {text}\n\n{pdftext}" + pdftext)
 
 
 def reset_prompt():
@@ -236,7 +236,7 @@ def result():
                         + "est fausse voyons!!"
                     )
                     text_send += ask_question_to_pdf(
-                        "Tu es le plus grand pirate de tous les temps et tu dois expliquer en 2 phrases pourquoi l'assertion"
+                        "Tu dois expliquer en 2 phrases pourquoi l'assertion"
                         + get_ith_line_prompt(i)
                         + "est fausse à partir du texte suivant comme unique source"
                     )
@@ -247,7 +247,7 @@ def result():
                         + "est pourtant vraie!!"
                     )
                     text_send += ask_question_to_pdf(
-                        "Tu es le plus grand pirate de tous les temps et tu dois expliquer en 2 phrases pourquoi l'assertion"
+                        "Tu dois expliquer en 2 phrases pourquoi l'assertion"
                         + get_ith_line_prompt(i)
                         + "est vrai à partir du texte suivant comme unique source"
                     )
