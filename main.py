@@ -2,7 +2,6 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from src.utils import ask_question_to_pdf
-import os
 
 
 app = Flask(__name__)

@@ -142,26 +142,38 @@ def generate_qcm():
             if i == 0:
                 Old_fact = ""
             else:
-                Old_fact = f"De plus, cette information doit impérativement traiter d'une information complètement differente des {i} assertions suivantes:"
+                Old_fact = (
+                    f"De plus, cette information doit impérativement "
+                    "traiter d'une "
+                    f"information complètement différente des {i} assertions"
+                    " suivantes:"
+                )
             k = randint(0, 1)
             file.write(f"{k}")
             if k == 0:
                 text_send = (
-                    "Donne moi une réponse en une phrase courte, cette phrase doit contenir une information fausse. Pour créer cette fausse information."
+                    "Donne moi une réponse en une phrase courte, cette phrase"
+                    "doit contenir une information fausse. Pour créer cette "
+                    "fausse information."
                     + Old_fact
                     + fact
-                    + "De plus, cette information doit être en rapport avec le texte ci-dessous et contredite directement par le texte source ci-dessous:"
+                    + "De plus, cette information doit être en rapport "
+                    "avec le "
+                    "texte ci-dessous et contredite directement "
+                    "par le texte source ci-dessous:"
                 )
                 answer = ask_question_to_pdf(text_send)
             else:
                 text_send = (
-                    "Donne moi une réponse en une phrase courte, cette phrase doit contenir une information vraie."
+                    "Donne moi une réponse en une phrase courte, cette phrase"
+                    "doit contenir une information vraie."
                     + Old_fact
                     + fact
-                    + "De plus, cette information vraie doit imperativement provenir de ce texte source:"
+                    + "De plus, cette information vraie doit imperativement"
+                    "provenir de ce texte source:"
                 )
                 answer = ask_question_to_pdf(text_send)
-            fact += "- " + answer + f"\n"
+            fact += f"- {answer}\n"
             dic[f"answer{i}"] = answer
             dic[f"{i}"] = k
     add_prompt(fact)
@@ -221,11 +233,18 @@ def result():
         actual_button = (file.read()).strip()
     if true_button == actual_button:
         text_send = gpt3_completion(
-            "Tu es le plus grand pirate de tous les temps et moi, ton plus fidèle matelot,je viens de réussir parfaitement un QCM que tu vient de me poser!"
+            "Tu es le plus grand pirate de tous les temps "
+            "et moi, ton plus fidèle matelot,je viens de réussir "
+            "parfaitement un QCM que tu vient de me poser!"
         )
     else:
         text_send = gpt3_completion(
-            "Tu es le plus grand pirate de tous les temps et moi, ton plus fidèle matelot, je viens d'échouer sur ton QCM en ayant au moins une réponse fausse. Annonce moi cette nouvelle et dis-moi que nous allons revoir les erreurs en 2 phrases maximum"
+            "Tu es le plus grand pirate de tous les temps et "
+            "moi, ton plus fidèle matelot, je viens d'échouer sur ton "
+            "QCM en ayant au moins une réponse fausse. "
+            "Annonce moi cette nouvelle "
+            "et dis-moi que nous allons revoir les erreurs "
+            "en 2 phrases maximum"
         )
         for i in range(4):
             if actual_button[i] != true_button[i]:
@@ -238,7 +257,8 @@ def result():
                     text_send += ask_question_to_pdf(
                         "Tu dois expliquer en 2 phrases pourquoi l'assertion"
                         + get_ith_line_prompt(i)
-                        + "est fausse à partir du texte suivant comme unique source"
+                        + "est fausse à partir du texte suivant "
+                        "comme unique source"
                     )
                 else:
                     text_send += (
@@ -247,9 +267,11 @@ def result():
                         + "est pourtant vraie!!"
                     )
                     text_send += ask_question_to_pdf(
+
                         "Tu dois expliquer en 2 phrases pourquoi l'assertion"
                         + get_ith_line_prompt(i)
-                        + "est vrai à partir du texte suivant comme unique source"
+                        + "est vrai à partir du texte suivant comme"
+                        " unique source"
                     )
     return text_send
 
